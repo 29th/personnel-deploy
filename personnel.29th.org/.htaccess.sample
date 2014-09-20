@@ -1,0 +1,2 @@
+SetEnv WORKING_DIR ./
+SetEnv SECRET test
