@@ -27,10 +27,10 @@
 		'echo $PWD',
 		'whoami',
 		'rm -rf *',
-		'git clone https://github.com/29th/personnel.git ./',
-		'npm install',
-		'bower install',
-		'gulp',
+		'git clone https://github.com/29th/personnel.git ./ && npm install && bower install && gulp',
+		//'npm install',
+		//'bower install',
+		//'gulp',
 	);
  
 	// Set working directory
