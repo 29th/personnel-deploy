@@ -26,8 +26,8 @@
 	$commands = array(
 		'echo $PWD',
 		'whoami',
-		'rm -rf *',
-		'git clone https://github.com/29th/personnel.git ./',
+		'git pull origin master',
+		'git status',
 		'npm install',
 		'bower install',
 		'gulp',
