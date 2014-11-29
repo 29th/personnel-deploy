@@ -26,8 +26,8 @@
 	$commands = array(
 		'echo $PWD',
 		'whoami',
-		'cd .. && rm -rf ' . getenv('WORKING_DIR'),
-		'git clone https://github.com/29th/personnel.git ' . getenv('WORKING_DIR'),
+		'rm -rf *',
+		'git clone https://github.com/29th/personnel.git ./',
 		'npm install',
 		'bower install',
 		'gulp',
