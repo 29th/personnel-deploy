@@ -26,11 +26,11 @@
 	$commands = array(
 		'echo $PWD',
 		'whoami',
-		'rm -rf *',
-		'git clone https://github.com/29th/personnel.git ./ && npm install && bower install && gulp',
-		//'npm install',
-		//'bower install',
-		//'gulp',
+		'cd .. && rm -rf ' . getenv('WORKING_DIR'),
+		'git clone https://github.com/29th/personnel.git ' . getenv('WORKING_DIR'),
+		'npm install',
+		'bower install',
+		'gulp',
 	);
  
 	// Set working directory
