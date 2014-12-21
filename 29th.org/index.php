@@ -28,8 +28,7 @@
 		'whoami',
 		'git pull origin master',
 		'git status',
-		'jekyll build',
-		'ln -s ../api.29th.org/coats _site/'
+		'jekyll build'
 	);
  
 	// Set working directory
