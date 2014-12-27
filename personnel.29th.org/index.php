@@ -26,7 +26,7 @@
 	$commands = array(
 		'echo $PWD',
 		'whoami',
-		'git pull origin master',
+		'git pull --rebase origin master',
 		'git status',
 		'npm install',
 		'bower install',
