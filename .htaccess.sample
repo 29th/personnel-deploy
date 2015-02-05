@@ -1,0 +1,15 @@
+SetEnv PERSONNEL_APP_PRODUCTION_DIR ''
+SetEnv PERSONNEL_APP_STAGING_DIR    ''
+SetEnv PERSONNEL_APP_BACKUP_DIR     ''
+
+SetEnv PERSONNEL_API_PRODUCTION_DIR ''
+SetEnv PERSONNEL_API_STAGING_DIR    ''
+SetEnv PERSONNEL_API_BACKUP_DIR     ''
+
+SetEnv FORUMS_PRODUCTION_DIR ''
+SetEnv FORUMS_STAGING_DIR    ''
+SetEnv FORUMS_BACKUP_DIR     ''
+
+RewriteEngine on
+RewriteCond $1 !^(index\.php)
+RewriteRule ^(.*)$ ./index.php?q=$1 [L]

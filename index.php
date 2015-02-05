@@ -1,20 +1,30 @@
 <?php
-// This is working! Just need to move the below to env vars
 $config = array(
     'personnel-app' => array(
-        'production_dir' => '/var/www/html/personnel-app/',
-        'staging_dir' => '/var/www/html/staging-personnel-app/',
-        'backup_dir' => '/var/www/html/backup-personnel-app/',
+        'production_dir' => getenv('PERSONNEL_APP_PRODUCTION_DIR'),
+        'staging_dir' => getenv('PERSONNEL_APP_STAGING_DIR'),
+        'backup_dir' => getenv('PERSONNEL_APP_BACKUP_DIR'),
         'update_script' => './update.sh'
     ),
     'personnel-api' => array(
-        'production_dir' => '/var/www/html/personnel-api/',
-        'staging_dir' => '/var/www/html/staging-personnel-api/',
-        'backup_dir' => '/var/www/html/backup-personnel-api/',
+        'production_dir' => getenv('PERSONNEL_API_PRODUCTION_DIR'),
+        'staging_dir' => getenv('PERSONNEL_API_STAGING_DIR'),
+        'backup_dir' => getenv('PERSONNEL_API_BACKUP_DIR'),
+        'update_script' => './update.sh'
+    ),
+    'forums' => array(
+        'production_dir' => getenv('FORUMS_PRODUCTION_DIR'),
+        'staging_dir' => getenv('FORUMS_PRODUCTION_DIR'),
+        'backup_dir' => getenv('FORUMS_PRODUCTION_DIR'),
         'update_script' => './update.sh'
     )
 );
-$paths = sizeof($argv) > 1 ? $config[$argv[1]] : $config['personnel-app'];
+//$app = sizeof($argv) > 1 ? $argv[1] : null;
+$app = isset($_GET['q']) ? $_GET['q'] : null;
+if( ! $app || ! isset($config[$app])) {
+    die("Configuration unknown for application '{$app}'\n");
+}
+$paths = $config[$app];
 
 // Verify request is authentic (from GitHub)
 /*$headers = getallheaders();
@@ -36,10 +46,13 @@ echo shell_exec('set -x ; cp -R ' . $paths['production_dir'] . ' ' . $paths['sta
 // Execute update script inside staging directory
 chdir($paths['staging_dir']);
 echo shell_exec('bash ' . $paths['update_script']);
+echo "Staging directory built\n";
 
 // Backup previous build
 echo shell_exec('set -x ; rm -rf ' . $paths['backup_dir']);
 echo shell_exec('set -x ; mv ' . $paths['production_dir'] . ' ' . $paths['backup_dir']);
+echo "Previous build backed up\n";
 
 // Move staging to production
 echo shell_exec('set -x ; mv ' . $paths['staging_dir'] . ' ' . $paths['production_dir']);
+echo "Staging build moved to production\n";
