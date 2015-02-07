@@ -42,7 +42,7 @@ if($hash !== $payloadHash) {
 
 // Create staging directory
 echo shell_exec('set -x ; rm -rf ' . $paths['staging_dir']);
-echo shell_exec('set -x ; cp -R ' . $paths['production_dir'] . ' ' . $paths['staging_dir']);
+echo shell_exec('set -x ; cp -R --parents ' . $paths['production_dir'] . ' ' . $paths['staging_dir']);
 
 // Execute update script inside staging directory
 chdir($paths['staging_dir']);
@@ -51,9 +51,11 @@ echo "Staging directory built\n";
 
 // Backup previous build
 echo shell_exec('set -x ; rm -rf ' . $paths['backup_dir']);
+echo shell_exec('set -x ; mkdir --parents dirname ' . $paths['backup_dir']);
 echo shell_exec('set -x ; mv ' . $paths['production_dir'] . ' ' . $paths['backup_dir']);
 echo "Previous build backed up\n";
 
 // Move staging to production
+echo shell_exec('set -x ; mkdir --parents dirname ' . $paths['production_dir']);
 echo shell_exec('set -x ; mv ' . $paths['staging_dir'] . ' ' . $paths['production_dir']);
 echo "Staging build moved to production\n";
