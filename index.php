@@ -22,12 +22,13 @@ $config = array(
 //$app = sizeof($argv) > 1 ? $argv[1] : null;
 $app = isset($_GET['q']) ? $_GET['q'] : null;
 if( ! $app || ! isset($config[$app])) {
+    http_response_code(404);
     die("Configuration unknown for application '{$app}'\n");
 }
 $paths = $config[$app];
 
 // Verify request is authentic (from GitHub)
-/*$headers = getallheaders();
+$headers = getallheaders();
 $hubSig = $headers['X-Hub-Signature'];
 list($algo, $hash) = explode('=', $hubSig, 2);
 
@@ -37,7 +38,7 @@ $payloadHash = hash_hmac($algo, $payload, getenv('SECRET'));
 if($hash !== $payloadHash) {
 	http_response_code(403);
 	die('Invalid signature');
-}*/
+}
 
 // Create staging directory
 echo shell_exec('set -x ; rm -rf ' . $paths['staging_dir']);
