@@ -14,8 +14,8 @@ $config = array(
     ),
     'forums' => array(
         'production_dir' => getenv('FORUMS_PRODUCTION_DIR'),
-        'staging_dir' => getenv('FORUMS_PRODUCTION_DIR'),
-        'backup_dir' => getenv('FORUMS_PRODUCTION_DIR'),
+        'staging_dir' => getenv('FORUMS_STAGING_DIR'),
+        'backup_dir' => getenv('FORUMS_BACKUP_DIR'),
         'update_script' => './update.sh'
     )
 );
