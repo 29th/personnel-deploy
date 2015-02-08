@@ -42,7 +42,8 @@ if($hash !== $payloadHash) {
 
 // Create staging directory
 echo shell_exec('set -x ; rm -rf ' . $paths['staging_dir']);
-echo shell_exec('set -x ; cp -R --parents ' . $paths['production_dir'] . ' ' . $paths['staging_dir']);
+echo shell_exec('set -x ; mkdir --parents dirname ' . $paths['staging_dir']);
+echo shell_exec('set -x ; cp -R ' . $paths['production_dir'] . ' ' . $paths['staging_dir']);
 
 // Execute update script inside staging directory
 chdir($paths['staging_dir']);
